@@ -12,6 +12,8 @@ int main(int argc, char**argv) {
     return -1;
   }
 
+  printf("Reading file %s\n", filename);
+
   start_timer();
   ret = count_lines_file_api(filename, &lines);
   if (ret != 0) {
