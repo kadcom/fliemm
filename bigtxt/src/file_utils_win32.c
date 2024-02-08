@@ -13,7 +13,7 @@ void start_timer(void) {
 float stop_timer(void) {
   LARGE_INTEGER end_time;
   QueryPerformanceCounter(&end_time);
-  return (float)(end_time.QuadPart - start_time.QuadPart) / frequency.QuadPart;
+  return (float)((end_time.QuadPart - start_time.QuadPart) * 1000.0) / frequency.QuadPart;
 }
 
 
