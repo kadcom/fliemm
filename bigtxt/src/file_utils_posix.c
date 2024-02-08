@@ -25,12 +25,13 @@ float stop_timer(void) {
   return elapsed;
 }
 
-int get_file_name(int argc, char **argv, char **filename) {
+int get_file_name(int argc, char **argv, char *filename, size_t fnsize) {
   if (argc != 2) {
     return -1;
   }
 
-  *filename = argv[1];
+  strncpy(filename, argv[1], fnsize);
+
   return 0;
 }
 

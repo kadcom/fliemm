@@ -1,6 +1,6 @@
 # if windows then include certain files 
 IF(WIN32)
-  SET(FILE_UTILS_SRC file_utils_win.c)
+  SET(FILE_UTILS_SRC file_utils_win32.c)
 #else if posix 
 ELSE()
   SET(FILE_UTILS_SRC file_utils_posix.c)

@@ -2,12 +2,12 @@
 #include <stdio.h>
 
 int main(int argc, char**argv) {
-  char *filename;
+  char filename[MAX_PATH];
   int lines;
   int ret;
   float elapsedms;
 
-  ret = get_file_name(argc, argv, &filename);
+  ret = get_file_name(argc, argv, filename, sizeof(filename));
   if (ret != 0) {
     return -1;
   }
