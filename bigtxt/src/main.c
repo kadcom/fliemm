@@ -35,5 +35,9 @@ int main(int argc, char**argv) {
   printf("File %s has %d lines\n", filename, lines);
   printf("Reading file %s with mmap took %.2f ms\n", filename, elapsedms);
 
+#if WIN32 
+  system("pause");
+#endif
+
   return 0;
 }

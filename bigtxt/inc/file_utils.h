@@ -2,6 +2,7 @@
 #define KADCOM_FILE_UTILS_H_
 
 #include <stddef.h>
+#include <stdlib.h>
 
 #ifndef MAX_PATH
 #define MAX_PATH 260
