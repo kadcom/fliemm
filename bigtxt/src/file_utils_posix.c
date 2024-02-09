@@ -25,6 +25,20 @@ float stop_timer(void) {
   return elapsed;
 }
 
+size_t get_page_size(void) {
+  return sysconf(_SC_PAGESIZE);
+}
+
+size_t get_file_size(const char *filename) {
+  struct stat sb;
+
+  if (stat(filename, &sb) == -1) {
+    return -1;
+  }
+
+  return sb.st_size;
+}
+
 int get_file_name(int argc, char **argv, char *filename, size_t fnsize) {
   if (argc != 2) {
     return -1;
@@ -64,6 +78,7 @@ int count_lines_mmap(const char *filename, int *lines) {
   struct stat sb;
   uint8_t *data;
   off_t i;
+  size_t sz;
 
   fd = open(filename, O_RDONLY);
   if (fd == -1) {
@@ -76,8 +91,9 @@ int count_lines_mmap(const char *filename, int *lines) {
   }
 
   n = 0;
+  sz = ALIGN_TO_SIZE(sb.st_size, get_page_size());
 
-  data = mmap(NULL, sb.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
+  data = mmap(NULL, sz, PROT_READ, MAP_PRIVATE, fd, 0);
   if (data == MAP_FAILED) {
     close(fd);
     return -1;

@@ -16,6 +16,11 @@ float stop_timer(void) {
   return (float)((end_time.QuadPart - start_time.QuadPart) * 1000.0) / frequency.QuadPart;
 }
 
+size_t get_page_size(void) {
+  SYSTEM_INFO si;
+  GetSystemInfo(&si);
+  return si.dwPageSize;
+}
 
 /* get filename from arguments but if not, then open file dialog */
 int get_file_name(int argc, char **argv, char *filename, size_t fnsize) {
