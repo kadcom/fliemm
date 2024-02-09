@@ -13,7 +13,7 @@ void start_timer(void) {
   clock_gettime(CLOCK_MONOTONIC, &start_time);
 }
 
-// elapsed in milliseconds
+/* elapsed in milliseconds */
 float stop_timer(void) {
   struct timespec end_time;
   float elapsed;
