@@ -16,9 +16,9 @@ int main(int argc, char**argv) {
   file_size = get_file_size(filename);
   page_size = get_page_size();
   printf("Reading file %s\n", filename);
-  printf("Page Size: %lu\n", page_size);
-  printf("File Size: %lu\n", file_size);
-  printf("Aligned Size: %lu\n", ALIGN_TO_SIZE(file_size, page_size));
+  printf("Page Size: %lu\n", (unsigned long) page_size);
+  printf("File Size: %lu\n", (unsigned long) file_size);
+  printf("Aligned Size: %lu\n", (unsigned long) ALIGN_TO_SIZE(file_size, page_size));
 
   start_timer();
   ret = count_lines_file_api(filename, &lines);

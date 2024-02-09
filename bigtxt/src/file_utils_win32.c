@@ -22,6 +22,27 @@ size_t get_page_size(void) {
   return si.dwPageSize;
 }
 
+size_t get_file_size(const char *filename) {
+  HANDLE hFile;
+  DWORD size;
+
+  hFile = CreateFile(filename, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+  if (hFile == INVALID_HANDLE_VALUE) {
+    printf("Error: %lu\n", GetLastError());
+    return 0;
+  }
+
+  size = GetFileSize(hFile, NULL);
+  if (size == INVALID_FILE_SIZE) {
+    printf("Error: %lu\n", GetLastError());
+    CloseHandle(hFile);
+    return 0;
+  }
+
+  CloseHandle(hFile);
+  return size;
+}
+
 /* get filename from arguments but if not, then open file dialog */
 int get_file_name(int argc, char **argv, char *filename, size_t fnsize) {
   static char fn[MAX_PATH];
